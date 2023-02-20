@@ -93,3 +93,23 @@ func TestCategoriesAvg_foundMultiple(t *testing.T) {
 		t.Error("not what expected")
 	}
 }
+
+func TestPeriodsDynamic(t *testing.T) {
+	var first = map[types.Category]types.Money{
+		"fun":  100,
+		"auto": 100,
+		"food": 101,
+	}
+	var second = map[types.Category]types.Money{
+		"fun":  100,
+		"auto": 200,
+		"car":  50,
+	}
+	result := PeriodsDynamic(first, second)
+	var expected = map[types.Category]types.Money{
+		"fun": 100,
+	}
+	if reflect.DeepEqual(result, expected) == false {
+		t.Error("no what expect")
+	}
+}
